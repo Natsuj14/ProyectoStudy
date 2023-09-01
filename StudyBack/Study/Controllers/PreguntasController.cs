@@ -11,55 +11,55 @@ namespace Study.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ModuloController : ControllerBase
+    public class PreguntasController : ControllerBase
     {
         private readonly StudyContext _context;
 
-        public ModuloController(StudyContext context)
+        public PreguntasController(StudyContext context)
         {
             _context = context;
         }
 
-        // GET: api/Modulo
+        // GET: api/Pregunta
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Modulo>>> GetModulos()
+        public async Task<ActionResult<IEnumerable<Pregunta>>> GetPregunta()
         {
-          if (_context.Modulos == null)
+          if (_context.Pregunta == null)
           {
               return NotFound();
           }
-            return await _context.Modulos.ToListAsync();
+            return await _context.Pregunta.ToListAsync();
         }
 
-        // GET: api/Modulo/5
+        // GET: api/Pregunta/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Modulo>> GetModulo(int id)
+        public async Task<ActionResult<Pregunta>> GetPregunta(int id)
         {
-          if (_context.Modulos == null)
+          if (_context.Pregunta == null)
           {
               return NotFound();
           }
-            var modulo = await _context.Modulos.FindAsync(id);
+            var pregunta = await _context.Pregunta.FindAsync(id);
 
-            if (modulo == null)
+            if (pregunta == null)
             {
                 return NotFound();
             }
 
-            return modulo;
+            return pregunta;
         }
 
-        // PUT: api/Modulo/5
+        // PUT: api/Pregunta/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutModulo(int id, Modulo modulo)
+        public async Task<IActionResult> PutPregunta(int id, Pregunta pregunta)
         {
-            if (id != modulo.IdModulo)
+            if (id != pregunta.IdPregunta)
             {
                 return BadRequest();
             }
 
-            _context.Entry(modulo).State = EntityState.Modified;
+            _context.Entry(pregunta).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +67,7 @@ namespace Study.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ModuloExists(id))
+                if (!PreguntaExists(id))
                 {
                     return NotFound();
                 }
@@ -80,44 +80,44 @@ namespace Study.Controllers
             return NoContent();
         }
 
-        // POST: api/Modulo
+        // POST: api/Pregunta
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Modulo>> PostModulo(Modulo modulo)
+        public async Task<ActionResult<Pregunta>> PostPregunta(Pregunta pregunta)
         {
-          if (_context.Modulos == null)
+          if (_context.Pregunta == null)
           {
-              return Problem("Entity set 'StudyContext.Modulos'  is null.");
+              return Problem("Entity set 'StudyContext.Pregunta'  is null.");
           }
-            _context.Modulos.Add(modulo);
+            _context.Pregunta.Add(pregunta);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetModulo", new { id = modulo.IdModulo }, modulo);
+            return CreatedAtAction("GetPregunta", new { id = pregunta.IdPregunta }, pregunta);
         }
 
-        // DELETE: api/Modulo/5
+        // DELETE: api/Pregunta/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteModulo(int id)
+        public async Task<IActionResult> DeletePregunta(int id)
         {
-            if (_context.Modulos == null)
+            if (_context.Pregunta == null)
             {
                 return NotFound();
             }
-            var modulo = await _context.Modulos.FindAsync(id);
-            if (modulo == null)
+            var pregunta = await _context.Pregunta.FindAsync(id);
+            if (pregunta == null)
             {
                 return NotFound();
             }
 
-            _context.Modulos.Remove(modulo);
+            _context.Pregunta.Remove(pregunta);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool ModuloExists(int id)
+        private bool PreguntaExists(int id)
         {
-            return (_context.Modulos?.Any(e => e.IdModulo == id)).GetValueOrDefault();
+            return (_context.Pregunta?.Any(e => e.IdPregunta == id)).GetValueOrDefault();
         }
     }
 }

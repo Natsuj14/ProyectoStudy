@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Jhon\\U\\Septimo semestre\\Programacion\\ProyectoBack\\StudyBack\\Study\\Study.csproj": {}
+    "D:\\Jhon\\U\\Septimo semestre\\Programacion\\Proyecto\\StudyBack\\Study\\Study.csproj": {}
   },
   "projects": {
-    "D:\\Jhon\\U\\Septimo semestre\\Programacion\\ProyectoBack\\StudyBack\\Study\\Study.csproj": {
+    "D:\\Jhon\\U\\Septimo semestre\\Programacion\\Proyecto\\StudyBack\\Study\\Study.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Jhon\\U\\Septimo semestre\\Programacion\\ProyectoBack\\StudyBack\\Study\\Study.csproj",
+        "projectUniqueName": "D:\\Jhon\\U\\Septimo semestre\\Programacion\\Proyecto\\StudyBack\\Study\\Study.csproj",
         "projectName": "Study",
-        "projectPath": "D:\\Jhon\\U\\Septimo semestre\\Programacion\\ProyectoBack\\StudyBack\\Study\\Study.csproj",
+        "projectPath": "D:\\Jhon\\U\\Septimo semestre\\Programacion\\Proyecto\\StudyBack\\Study\\Study.csproj",
         "packagesPath": "C:\\Users\\Edison\\.nuget\\packages\\",
-        "outputPath": "D:\\Jhon\\U\\Septimo semestre\\Programacion\\ProyectoBack\\StudyBack\\Study\\obj\\",
+        "outputPath": "D:\\Jhon\\U\\Septimo semestre\\Programacion\\Proyecto\\StudyBack\\Study\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

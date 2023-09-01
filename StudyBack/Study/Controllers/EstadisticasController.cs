@@ -11,11 +11,11 @@ namespace Study.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EstadisticaController : ControllerBase
+    public class EstadisticasController : ControllerBase
     {
         private readonly StudyContext _context;
 
-        public EstadisticaController(StudyContext context)
+        public EstadisticasController(StudyContext context)
         {
             _context = context;
         }
