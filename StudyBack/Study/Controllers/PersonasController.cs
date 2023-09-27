@@ -22,13 +22,24 @@ namespace Study.Controllers
 
         // GET: api/Persona
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Persona>>> GetPersonas()
+        public async Task<ActionResult<IEnumerable<PersonaRol>>> GetPersonas()
         {
-          if (_context.Personas == null)
-          {
-              return NotFound();
-          }
-            return await _context.Personas.ToListAsync();
+            var personas = from persona in _context.Personas
+                           join rol in _context.Rols on persona.IdRol equals rol.IdRol
+                           select new
+                           {
+                               persona.IdPersona,
+                               persona.Nombre,
+                               persona.Apellido,
+                               persona.Edad,
+                               persona.Genero,
+                               persona.Correo,
+                               Rol = rol.DescripcionRol
+                           };
+            await _context.Personas.ToListAsync();
+            var roles = await _context.Rols.ToListAsync();
+
+            return Ok(personas.ToList());
         }
 
         // GET: api/Persona/5
