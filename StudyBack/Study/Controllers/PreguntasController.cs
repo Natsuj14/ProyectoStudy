@@ -24,11 +24,24 @@ namespace Study.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Pregunta>>> GetPregunta()
         {
-          if (_context.Pregunta == null)
-          {
-              return NotFound();
-          }
-            return await _context.Pregunta.ToListAsync();
+            var preguntas1 = await _context.Pregunta.ToListAsync();
+            var temas = await _context.Temas.ToListAsync();
+
+            var preguntas = from pregunta in preguntas1
+                           join tema in temas on pregunta.IdTema equals tema.IdTema
+                           select new
+                           {
+                               pregunta.IdPregunta,
+                               tema = tema.Nombre,
+                               pregunta.Enunciado,
+                               pregunta.Respuesta,
+                               pregunta.OpcionA,
+                               pregunta.OpcionB,
+                               pregunta.OpcionC,
+                           };
+
+
+            return Ok(preguntas.ToList());
         }
 
         // GET: api/Pregunta/5

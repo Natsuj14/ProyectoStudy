@@ -24,11 +24,17 @@ namespace Study.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Modulo>>> GetModulos()
         {
-          if (_context.Modulos == null)
-          {
-              return NotFound();
-          }
-            return await _context.Modulos.ToListAsync();
+            var modulos1 = await _context.Modulos.ToListAsync();
+
+            var modulos = from modulo in modulos1
+                          select new
+                          {
+                              modulo.IdModulo,
+                              modulo.DescripcionMod
+                          };
+
+
+            return Ok(modulos.ToList());
         }
 
         // GET: api/Modulo/5

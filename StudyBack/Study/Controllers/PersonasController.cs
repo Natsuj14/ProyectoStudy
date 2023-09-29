@@ -22,10 +22,13 @@ namespace Study.Controllers
 
         // GET: api/Persona
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PersonaRol>>> GetPersonas()
+        public async Task<ActionResult<IEnumerable<Persona>>> GetPersonas()
         {
-            var personas = from persona in _context.Personas
-                           join rol in _context.Rols on persona.IdRol equals rol.IdRol
+            var persons = await _context.Personas.ToListAsync();
+            var roles = await _context.Rols.ToListAsync();
+
+            var personas = from persona in persons
+                           join rol in roles on persona.IdRol equals rol.IdRol
                            select new
                            {
                                persona.IdPersona,
@@ -36,8 +39,7 @@ namespace Study.Controllers
                                persona.Correo,
                                Rol = rol.DescripcionRol
                            };
-            await _context.Personas.ToListAsync();
-            var roles = await _context.Rols.ToListAsync();
+            
 
             return Ok(personas.ToList());
         }

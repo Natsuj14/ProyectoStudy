@@ -24,11 +24,27 @@ namespace Study.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RolPermiso>>> GetRolPermisos()
         {
-          if (_context.RolPermisos == null)
-          {
-              return NotFound();
-          }
-            return await _context.RolPermisos.ToListAsync();
+            var rp1 = await _context.RolPermisos.ToListAsync();
+            var roles = await _context.Rols.ToListAsync();
+            var modulos = await _context.Modulos.ToListAsync();
+
+            var rps = from rp in rp1
+                            join rol in roles on rp.IdRol equals rol.IdRol
+                            join modulo in modulos on rp.IdModulo equals modulo.IdModulo
+                            select new
+                            {
+                                rp.IdRolPermiso,
+                                rol = rol.DescripcionRol,
+                                modulo = modulo.DescripcionMod,
+                                rp.PermisoGet,
+                                rp.PermisoPost,
+                                rp.PermisoDelete,
+                                rp.PermisoPut,
+                                rp.PermisoGetById
+                            };
+
+
+            return Ok(rps.ToList());
         }
 
         // GET: api/RolPermiso/5
