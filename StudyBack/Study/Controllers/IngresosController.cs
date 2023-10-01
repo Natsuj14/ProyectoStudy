@@ -24,11 +24,24 @@ namespace Study.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Ingreso>>> GetIngresos()
         {
-          if (_context.Ingresos == null)
-          {
-              return NotFound();
-          }
-            return await _context.Ingresos.ToListAsync();
+            var ingreso = await _context.Ingresos.ToListAsync();
+            var usuario = await _context.Usuarios.ToListAsync();
+
+            var ingresos = from Ingresos
+                        in ingreso
+                        join Usuarios
+                        in usuario
+                        on Ingresos.IdIngreso equals Usuarios.IdUsuario
+
+                        select new
+                        {
+                            Ingresos.IdIngreso,
+                            Usuarios.Nickname,
+                            Ingresos.Fecha,
+                            Ingresos.Tipo
+                        };
+
+            return Ok(ingresos.ToList());
         }
 
         // GET: api/Ingreso/5
