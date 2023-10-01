@@ -34,7 +34,7 @@ namespace Study.Controllers
                         on Ingresos.IdIngreso equals Usuarios.IdUsuario
 
                         select new
-                        {
+          {
                             Ingresos.IdIngreso,
                             Usuarios.Nickname,
                             Ingresos.Fecha,

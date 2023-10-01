@@ -39,7 +39,7 @@ namespace Study.Controllers
                 on Pruebas.IdPrueba equals Areas.IdArea
 
                         select new
-                        {
+          {
                             Pruebas.IdPrueba,
                             Usuarios.Nickname,
                             Pruebas.Duracion,

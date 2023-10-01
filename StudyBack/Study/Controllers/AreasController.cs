@@ -29,7 +29,7 @@ namespace Study.Controllers
                         in area
 
                         select new
-                        {
+          {
                             Areas.IdArea,
                             Areas.Nombre
                             

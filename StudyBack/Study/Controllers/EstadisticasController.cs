@@ -33,7 +33,7 @@ namespace Study.Controllers
                         on Estadisticas.IdEstadistica equals Usuarios.IdUsuario
 
                         select new
-                        {
+          {
                             Estadisticas.IdEstadistica,
                             Usuarios.Nickname,
                             Estadisticas.TotalPruebas,

@@ -36,7 +36,7 @@ namespace Study.Controllers
                           on Usuario.IdUsuario equals Persona.IdPersona
 
                           select new
-                          {
+          {
                               Usuario.IdUsuario, 
                               Usuario.Nickname,
                               Usuario.Contraseña,
@@ -52,7 +52,7 @@ namespace Study.Controllers
 
             return Ok(usuario.ToList());
         }
-          
+
 
         // GET: api/Usuario/5
         [HttpGet("{id}")]

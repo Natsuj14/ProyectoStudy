@@ -24,11 +24,20 @@ namespace Study.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Materia>>> GetMateria()
         {
-          if (_context.Materia == null)
-          {
-              return NotFound();
-          }
-            return await _context.Materia.ToListAsync();
+            var materias1 = await _context.Materia.ToListAsync();
+            var areas = await _context.Areas.ToListAsync();
+
+            var materias = from materia in materias1
+                           join area in areas on materia.IdArea equals area.IdArea
+                           select new
+                           {
+                            materia.IdArea,
+                            materia.Nombre,
+                            area = area.Nombre
+                           };
+
+
+            return Ok(materias.ToList());
         }
 
         // GET: api/Materia/5
