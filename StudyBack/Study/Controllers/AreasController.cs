@@ -24,11 +24,18 @@ namespace Study.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Area>>> GetAreas()
         {
-          if (_context.Areas == null)
+            var area = await _context.Areas.ToListAsync();
+            var areas = from Areas
+                        in area
+
+                        select new
           {
-              return NotFound();
-          }
-            return await _context.Areas.ToListAsync();
+                            Areas.IdArea,
+                            Areas.Nombre
+                            
+                        };
+
+            return Ok(areas.ToList());
         }
 
         // GET: api/Area/5

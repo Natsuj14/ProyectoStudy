@@ -24,11 +24,32 @@ namespace Study.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Prueba>>> GetPruebas()
         {
-          if (_context.Pruebas == null)
+            var prueba = await _context.Pruebas.ToListAsync();
+            var usuario = await _context.Usuarios.ToListAsync();
+            var area = await _context.Areas.ToListAsync();
+            var pruebas =
+
+                from Pruebas
+                in prueba
+                join Usuarios
+                in usuario
+                on Pruebas.IdPrueba equals Usuarios.IdUsuario
+                join Areas
+                in area
+                on Pruebas.IdPrueba equals Areas.IdArea
+
+                        select new
           {
-              return NotFound();
-          }
-            return await _context.Pruebas.ToListAsync();
+                            Pruebas.IdPrueba,
+                            Usuarios.Nickname,
+                            Pruebas.Duracion,
+                            Pruebas.CantidadPreguntas,
+                            Pruebas.Calificacion,
+                            Pruebas.FechaPrueba,
+                            Areas.Nombre
+                        };
+
+            return Ok(pruebas.ToList());
         }
 
         // GET: api/Prueba/5

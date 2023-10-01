@@ -24,11 +24,17 @@ namespace Study.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Rol>>> GetRols()
         {
-          if (_context.Rols == null)
+            var rol = await _context.Rols.ToListAsync();
+            var roles = from Roles
+                        in rol
+
+                        select new
           {
-              return NotFound();
-          }
-            return await _context.Rols.ToListAsync();
+                            Roles.IdRol,
+                            Descripcion = Roles.DescripcionRol
+                        };
+
+            return Ok(roles.ToList());
         }
 
         // GET: api/Rol/5

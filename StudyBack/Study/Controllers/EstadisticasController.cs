@@ -24,11 +24,26 @@ namespace Study.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Estadistica>>> GetEstadisticas()
         {
-          if (_context.Estadisticas == null)
+            var estadistica = await _context.Estadisticas.ToListAsync();
+            var usuario = await _context.Usuarios.ToListAsync();
+            var estadisticas = from Estadisticas
+                        in estadistica
+                        join Usuarios
+                        in usuario
+                        on Estadisticas.IdEstadistica equals Usuarios.IdUsuario
+
+                        select new
           {
-              return NotFound();
-          }
-            return await _context.Estadisticas.ToListAsync();
+                            Estadisticas.IdEstadistica,
+                            Usuarios.Nickname,
+                            Estadisticas.TotalPruebas,
+                            Estadisticas.TiempoPromedio,
+                            Estadisticas.Promedio,
+                            Estadisticas.MejorMateria,
+                            Estadisticas.PeorMateria
+                        };
+
+            return Ok(estadisticas.ToList());
         }
 
         // GET: api/Estadistica/5

@@ -24,12 +24,35 @@ namespace Study.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
         {
-          if (_context.Usuarios == null)
+
+            var persona = await _context.Personas.ToListAsync();
+            var usuarios = await _context.Usuarios.ToListAsync();
+
+            var usuario = from Usuario
+
+                          in usuarios
+                          join Persona
+                          in persona
+                          on Usuario.IdUsuario equals Persona.IdPersona
+
+                          select new
           {
-              return NotFound();
-          }
-            return await _context.Usuarios.ToListAsync();
+                              Usuario.IdUsuario, 
+                              Usuario.Nickname,
+                              Usuario.Contraseña,
+                              Persona.Nombre,
+                              Persona.Apellido,
+                              Persona.Cc,
+                              Persona.Correo,
+                              Persona.Genero
+                          };    
+
+            await _context.Usuarios.ToListAsync();
+            
+
+            return Ok(usuario.ToList());
         }
+
 
         // GET: api/Usuario/5
         [HttpGet("{id}")]
