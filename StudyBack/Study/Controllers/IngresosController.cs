@@ -24,21 +24,21 @@ namespace Study.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Ingreso>>> GetIngresos()
         {
-            var ingreso = await _context.Ingresos.ToListAsync();
-            var usuario = await _context.Usuarios.ToListAsync();
+            var ingreso1 = await _context.Ingresos.ToListAsync();
+            var usuario1 = await _context.Usuarios.ToListAsync();
 
-            var ingresos = from Ingresos
-                        in ingreso
-                        join Usuarios
-                        in usuario
-                        on Ingresos.IdIngreso equals Usuarios.IdUsuario
+            var ingresos = from ingreso
+                        in ingreso1
+                        join usuario
+                        in usuario1
+                        on ingreso.IdUsuario equals usuario.IdUsuario
 
                         select new
           {
-                            Ingresos.IdIngreso,
-                            Usuarios.Nickname,
-                            Ingresos.Fecha,
-                            Ingresos.Tipo
+                            ingreso.IdIngreso,
+                            usuario.Nickname,
+                            ingreso.Fecha,
+                            ingreso.Tipo
                         };
 
             return Ok(ingresos.ToList());
