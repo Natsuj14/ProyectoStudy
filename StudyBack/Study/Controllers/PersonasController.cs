@@ -32,6 +32,7 @@ namespace Study.Controllers
                            select new
                            {
                                persona.IdPersona,
+                               persona.Cc,
                                persona.Nombre,
                                persona.Apellido,
                                persona.Edad,
