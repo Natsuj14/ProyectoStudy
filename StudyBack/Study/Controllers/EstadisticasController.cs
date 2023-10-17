@@ -30,7 +30,7 @@ namespace Study.Controllers
                         in estadistica
                         join Usuarios
                         in usuario
-                        on Estadisticas.IdEstadistica equals Usuarios.IdUsuario
+                        on Estadisticas.IdUsuario equals Usuarios.IdUsuario
 
                         select new
           {

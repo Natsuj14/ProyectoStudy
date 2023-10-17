@@ -33,10 +33,10 @@ namespace Study.Controllers
                 in prueba
                 join Usuarios
                 in usuario
-                on Pruebas.IdPrueba equals Usuarios.IdUsuario
+                on Pruebas.IdUsuario equals Usuarios.IdUsuario
                 join Areas
                 in area
-                on Pruebas.IdPrueba equals Areas.IdArea
+                on Pruebas.IdArea equals Areas.IdArea
 
                         select new
           {

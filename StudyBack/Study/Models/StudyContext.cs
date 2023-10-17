@@ -41,19 +41,19 @@ public partial class StudyContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-L9O0M6O\\SQLEXPRESS; Database=Study; Trusted_Connection=True; TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-J7C6ATL\\SQLSERVER; Database=Study; Trusted_Connection=True; TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.UseCollation("Modern_Spanish_CI_AS");
+
         modelBuilder.Entity<Area>(entity =>
         {
             entity.HasKey(e => e.IdArea);
 
             entity.ToTable("Area");
 
-            entity.Property(e => e.IdArea)
-                .ValueGeneratedNever()
-                .HasColumnName("Id_Area");
+            entity.Property(e => e.IdArea).HasColumnName("Id_Area");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(50)
                 .IsUnicode(false);

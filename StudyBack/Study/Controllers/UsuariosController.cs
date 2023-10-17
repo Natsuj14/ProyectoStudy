@@ -33,7 +33,7 @@ namespace Study.Controllers
                           in usuarios
                           join Persona
                           in persona
-                          on Usuario.IdUsuario equals Persona.IdPersona
+                          on Usuario.IdPersona equals Persona.IdPersona
 
                           select new
           {

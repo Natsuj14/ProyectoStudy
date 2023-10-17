@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<StudyContext>(options => options.UseSqlServer("Server=DESKTOP-L9O0M6O\\SQLEXPRESS; Database=Study; Trusted_Connection=true;MultipleActiveResultSets=true"));
+builder.Services.AddDbContext<StudyContext>(options => options.UseSqlServer("Server=DESKTOP-J7C6ATL\\SQLSERVER; Database=Study; Trusted_Connection=true;MultipleActiveResultSets=true"));
 
 var app = builder.Build();
 
