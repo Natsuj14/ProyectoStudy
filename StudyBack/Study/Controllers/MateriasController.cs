@@ -31,7 +31,7 @@ namespace Study.Controllers
                            join area in areas on materia.IdArea equals area.IdArea
                            select new
                            {
-                            materia.IdArea,
+                            materia.IdMateria,
                             materia.Nombre,
                             area = area.Nombre
                            };
