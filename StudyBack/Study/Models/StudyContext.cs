@@ -76,7 +76,8 @@ public partial class StudyContext : DbContext
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Estadisticas)
                 .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__Estadisti__ID_Us__6FE99F9F");
+                .HasConstraintName("FK__Estadisti__ID_Us__6FE99F9F")
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Ingreso>(entity =>
@@ -96,7 +97,8 @@ public partial class StudyContext : DbContext
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Ingresos)
                 .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__Ingreso__ID_Usua__6477ECF3");
+                .HasConstraintName("FK__Ingreso__ID_Usua__6477ECF3")
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Materia>(entity =>
@@ -111,7 +113,8 @@ public partial class StudyContext : DbContext
 
             entity.HasOne(d => d.IdAreaNavigation).WithMany(p => p.Materia)
                 .HasForeignKey(d => d.IdArea)
-                .HasConstraintName("FK_Materia_Area");
+                .HasConstraintName("FK_Materia_Area")
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Modulo>(entity =>
@@ -150,7 +153,8 @@ public partial class StudyContext : DbContext
 
             entity.HasOne(d => d.IdRolNavigation).WithMany(p => p.Personas)
                 .HasForeignKey(d => d.IdRol)
-                .HasConstraintName("FK__Persona__ID_Rol__5BE2A6F2");
+                .HasConstraintName("FK__Persona__ID_Rol__5BE2A6F2")
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Pregunta>(entity =>
@@ -177,7 +181,8 @@ public partial class StudyContext : DbContext
 
             entity.HasOne(d => d.IdTemaNavigation).WithMany(p => p.Pregunta)
                 .HasForeignKey(d => d.IdTema)
-                .HasConstraintName("FK__Pregunta__ID_Tem__7A672E12");
+                .HasConstraintName("FK__Pregunta__ID_Tem__7A672E12")
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Prueba>(entity =>
@@ -193,11 +198,13 @@ public partial class StudyContext : DbContext
 
             entity.HasOne(d => d.IdAreaNavigation).WithMany(p => p.Pruebas)
                 .HasForeignKey(d => d.IdArea)
-                .HasConstraintName("FK_Prueba_Area");
+                .HasConstraintName("FK_Prueba_Area")
+                .OnDelete(DeleteBehavior.Cascade);
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Pruebas)
                 .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__Prueba__ID_Usuar__7E37BEF6");
+                .HasConstraintName("FK__Prueba__ID_Usuar__7E37BEF6")
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Rol>(entity =>
@@ -229,11 +236,13 @@ public partial class StudyContext : DbContext
 
             entity.HasOne(d => d.IdModuloNavigation).WithMany(p => p.RolPermisos)
                 .HasForeignKey(d => d.IdModulo)
-                .HasConstraintName("FK__Rol_Permi__ID_Mo__4E88ABD4");
+                .HasConstraintName("FK__Rol_Permi__ID_Mo__4E88ABD4")
+                .OnDelete(DeleteBehavior.Cascade);
 
             entity.HasOne(d => d.IdRolNavigation).WithMany(p => p.RolPermisos)
                 .HasForeignKey(d => d.IdRol)
-                .HasConstraintName("FK__Rol_Permi__ID_Ro__4D94879B");
+                .HasConstraintName("FK__Rol_Permi__ID_Ro__4D94879B")
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Tema>(entity =>
@@ -253,7 +262,8 @@ public partial class StudyContext : DbContext
 
             entity.HasOne(d => d.IdMateriaNavigation).WithMany(p => p.Temas)
                 .HasForeignKey(d => d.IdMateria)
-                .HasConstraintName("FK__Tema__ID_Materia__74AE54BC");
+                .HasConstraintName("FK__Tema__ID_Materia__74AE54BC")
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Usuario>(entity =>
@@ -273,7 +283,8 @@ public partial class StudyContext : DbContext
 
             entity.HasOne(d => d.IdPersonaNavigation).WithMany(p => p.Usuarios)
                 .HasForeignKey(d => d.IdPersona)
-                .HasConstraintName("FK__Usuario__ID_Pers__5EBF139D");
+                .HasConstraintName("FK__Usuario__ID_Pers__5EBF139D")
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         OnModelCreatingPartial(modelBuilder);
