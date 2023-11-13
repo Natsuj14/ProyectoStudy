@@ -138,6 +138,30 @@ namespace Study.Controllers
             return NoContent();
         }
 
+
+        // LOGIN: api/Usuario
+        [HttpGet("{nickname}/{contrasena}")]
+        public async Task<ActionResult<Usuario>> Login(string nickname, string contrasena)
+        {
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Nickname == nickname);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            if (usuario.Contraseña != contrasena)
+            {
+                return Unauthorized(); 
+            }
+
+            return Ok(new
+            {
+                Usuario = usuario
+            });
+        }
+
+
         private bool UsuarioExists(int id)
         {
             return (_context.Usuarios?.Any(e => e.IdUsuario == id)).GetValueOrDefault();
